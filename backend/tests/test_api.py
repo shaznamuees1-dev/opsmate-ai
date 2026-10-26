@@ -126,3 +126,14 @@ def test_chat_endpoint_with_mocked_assistant():
         assert "Production Database" in data["response"]
         assert "list_incidents" in data["tools_used"]
         assert "calculate_sla_risk" in data["tools_used"]
+
+
+def test_cors_preflight_allows_vercel_origin():
+    """Verify CORS preflight allows requests from production Vercel frontend."""
+    headers = {
+        "Origin": "https://opsmate-ai.vercel.app",
+        "Access-Control-Request-Method": "GET",
+    }
+    response = client.options("/api/health", headers=headers)
+    assert response.status_code == 200
+    assert response.headers.get("access-control-allow-origin") == "https://opsmate-ai.vercel.app"

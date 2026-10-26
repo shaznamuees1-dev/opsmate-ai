@@ -23,9 +23,14 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# Configure CORS restricted to local development frontend
-cors_env = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://127.0.0.1:5173")
-allowed_origins = [origin.strip() for origin in cors_env.split(",") if origin.strip()]
+# Configure CORS: allow local development and production Vercel frontend
+default_origins = "http://localhost:5173,http://127.0.0.1:5173,https://opsmate-ai.vercel.app"
+cors_env = os.getenv("CORS_ORIGINS", default_origins)
+allowed_origins = [origin.strip().rstrip("/") for origin in cors_env.split(",") if origin.strip()]
+
+# Ensure production Vercel origin is always permitted
+if "https://opsmate-ai.vercel.app" not in allowed_origins:
+    allowed_origins.append("https://opsmate-ai.vercel.app")
 
 app.add_middleware(
     CORSMiddleware,

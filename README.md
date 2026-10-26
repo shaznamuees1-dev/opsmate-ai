@@ -151,14 +151,17 @@ You will run the **FastAPI backend** in Terminal 1 and the **React frontend** in
 
 ---
 
-## Local URLs to Open
+## Application URLs
 
-| Application | URL | Description |
-| :--- | :--- | :--- |
-| **OpsMate Dashboard** | [http://localhost:5173](http://localhost:5173) | Interactive React incident operations dashboard |
-| **Interactive API Docs** | [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) | Swagger UI for testing FastAPI endpoints |
-| **API Health Endpoint** | [http://127.0.0.1:8000/api/health](http://127.0.0.1:8000/api/health) | Live service status and AI readiness check |
-| **Incident List API** | [http://127.0.0.1:8000/api/incidents](http://127.0.0.1:8000/api/incidents) | JSON feed with calculated SLA metrics |
+| Environment | Application | URL | Description |
+| :--- | :--- | :--- | :--- |
+| **Production** | **OpsMate Dashboard** | [https://opsmate-ai.vercel.app](https://opsmate-ai.vercel.app) | Live React frontend hosted on Vercel |
+| **Production** | **Backend API & Docs** | [https://opsmate-ai.onrender.com/docs](https://opsmate-ai.onrender.com/docs) | Live FastAPI backend on Render |
+| **Production** | **API Health** | [https://opsmate-ai.onrender.com/api/health](https://opsmate-ai.onrender.com/api/health) | Live status check on Render |
+| **Local Dev** | **OpsMate Dashboard** | [http://localhost:5173](http://localhost:5173) | Interactive React incident operations dashboard |
+| **Local Dev** | **Interactive API Docs** | [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) | Swagger UI for testing FastAPI endpoints |
+| **Local Dev** | **API Health Endpoint** | [http://127.0.0.1:8000/api/health](http://127.0.0.1:8000/api/health) | Live service status and AI readiness check |
+| **Local Dev** | **Incident List API** | [http://127.0.0.1:8000/api/incidents](http://127.0.0.1:8000/api/incidents) | JSON feed with calculated SLA metrics |
 
 ---
 

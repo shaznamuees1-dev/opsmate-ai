@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 
 const SUGGESTED_PROMPTS = [
   'Which P1 incidents are still open?',
@@ -40,7 +41,7 @@ export default function ChatPanel() {
     setIsLoading(true);
 
     try {
-      const response = await fetch('/api/chat', {
+      const response = await fetch(`${API_BASE_URL}/api/chat`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ message: text }),
@@ -65,7 +66,7 @@ export default function ChatPanel() {
         ...prev,
         {
           role: 'assistant',
-          content: `OpsMate AI Connection Error: ${err.message}. Please verify the FastAPI backend server is running on port 8000.`,
+          content: `OpsMate AI Connection Error: ${err.message}. Please verify the backend service is running and reachable.`,
           tools_used: [],
           status: 'error',
         },

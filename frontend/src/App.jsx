@@ -4,6 +4,7 @@ import SummaryCards from './components/SummaryCards';
 import FilterBar from './components/FilterBar';
 import IncidentTable from './components/IncidentTable';
 import ChatPanel from './components/ChatPanel';
+import { API_BASE_URL } from './config';
 
 export default function App() {
   const [incidents, setIncidents] = useState([]);
@@ -22,10 +23,12 @@ export default function App() {
   // Fetch health
   const fetchHealth = useCallback(async () => {
     try {
-      const res = await fetch('/api/health');
+      const res = await fetch(`${API_BASE_URL}/api/health`);
       if (res.ok) {
         const data = await res.json();
         setHealth(data);
+      } else {
+        setHealth({ status: 'offline', ai_ready: false });
       }
     } catch {
       setHealth({ status: 'offline', ai_ready: false });
@@ -35,7 +38,7 @@ export default function App() {
   // Fetch summary
   const fetchSummary = useCallback(async () => {
     try {
-      const res = await fetch('/api/incidents/summary');
+      const res = await fetch(`${API_BASE_URL}/api/incidents/summary`);
       if (res.ok) {
         const data = await res.json();
         setSummary(data);
@@ -55,7 +58,7 @@ export default function App() {
       if (status) params.append('status', status);
       if (service) params.append('service', service);
 
-      const res = await fetch(`/api/incidents?${params.toString()}`);
+      const res = await fetch(`${API_BASE_URL}/api/incidents?${params.toString()}`);
       if (res.ok) {
         const data = await res.json();
         setIncidents(data);
