@@ -220,7 +220,7 @@ def run_ops_assistant(user_message: str) -> ChatResponse:
                 groq_api_key=api_key,
                 model_name=chosen_model,
                 temperature=0.1,
-                max_tokens=1024,
+                max_tokens=512,
             )
 
         active_model = model_name
